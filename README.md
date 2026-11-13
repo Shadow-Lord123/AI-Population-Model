@@ -1,2 +1,2 @@
 # AI-Population-Model
-An 80% Artificial Intelligence and Machine Learning model.
+This is for my final 80% marks Artificial Intelligence and Machine Learning model.
