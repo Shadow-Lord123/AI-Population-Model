@@ -1,0 +1,137 @@
+{
+  "rows_model": 13869,
+  "rows_train": 9849,
+  "rows_test": 4020,
+  "pos_train": 0.052289572545436085,
+  "pos_test": 0.15547263681592038,
+  "n_countries": 201,
+  "seen": {
+    "Logistic Regression": {
+      "Accuracy": 0.774799472027617,
+      "Precision": 0.15400243803331978,
+      "Recall": 0.7359223300970874,
+      "F1": 0.2547043010752688,
+      "ROC-AUC": 0.8452424688111738
+    },
+    "Decision Tree": {
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall": 1.0,
+      "F1": 1.0,
+      "ROC-AUC": 1.0
+    },
+    "Random Forest": {
+      "Accuracy": 0.9988831353436897,
+      "Precision": 0.9790874524714829,
+      "Recall": 1.0,
+      "F1": 0.989433237271854,
+      "ROC-AUC": 1.0
+    }
+  },
+  "seen_tuned": {
+    "Logistic Regression": {
+      "Accuracy": 0.8377500253832877,
+      "Precision": 0.2227342549923195,
+      "Recall": 0.8446601941747572,
+      "F1": 0.3525121555915721,
+      "ROC-AUC": 0.910098793220734
+    },
+    "Decision Tree": {
+      "Accuracy": 0.9180627474870545,
+      "Precision": 0.3732638888888889,
+      "Recall": 0.8349514563106796,
+      "F1": 0.5158968206358728,
+      "ROC-AUC": 0.9234424309498005
+    },
+    "Random Forest": {
+      "Accuracy": 0.9671032592141334,
+      "Precision": 0.6140979689366786,
+      "Recall": 0.9980582524271845,
+      "F1": 0.7603550295857988,
+      "ROC-AUC": 0.9976367846124722
+    }
+  },
+  "baseline": {
+    "Logistic Regression": {
+      "Accuracy": 0.744776119402985,
+      "Precision": 0.3528980190755686,
+      "Recall": 0.7696,
+      "F1": 0.48390342052313884,
+      "ROC-AUC": 0.8178874815905743
+    },
+    "Decision Tree": {
+      "Accuracy": 0.8514925373134329,
+      "Precision": 0.54375,
+      "Recall": 0.2784,
+      "F1": 0.3682539682539683,
+      "ROC-AUC": 0.6176977908689248
+    },
+    "Random Forest": {
+      "Accuracy": 0.8756218905472637,
+      "Precision": 0.8342245989304813,
+      "Recall": 0.2496,
+      "F1": 0.3842364532019704,
+      "ROC-AUC": 0.8711992930780559
+    }
+  },
+  "final": {
+    "Logistic Regression": {
+      "Accuracy": 0.8151741293532339,
+      "Precision": 0.45302547770700635,
+      "Recall": 0.9104,
+      "F1": 0.6049973418394471,
+      "ROC-AUC": 0.9074893667157584
+    },
+    "Decision Tree": {
+      "Accuracy": 0.8462686567164179,
+      "Precision": 0.5049088359046283,
+      "Recall": 0.576,
+      "F1": 0.5381165919282511,
+      "ROC-AUC": 0.8794983210603828
+    },
+    "Random Forest": {
+      "Accuracy": 0.9,
+      "Precision": 0.6813008130081301,
+      "Recall": 0.6704,
+      "F1": 0.6758064516129032,
+      "ROC-AUC": 0.9316246244477172
+    }
+  },
+  "best_params": {
+    "Logistic Regression": {
+      "clf__C": 1
+    },
+    "Decision Tree": {
+      "max_depth": 4,
+      "min_samples_leaf": 1
+    },
+    "Random Forest": {
+      "max_depth": null,
+      "max_features": 0.5,
+      "min_samples_leaf": 10,
+      "n_estimators": 300
+    }
+  },
+  "cv_best": {
+    "Logistic Regression": 0.36995220914121696,
+    "Decision Tree": 0.334158066356294,
+    "Random Forest": 0.4158689544470951
+  },
+  "cv_table": {
+    "Logistic Regression": {
+      "Temporal CV F1 (mean)": 0.2139271629598003,
+      "Temporal CV F1 (sd)": 0.14251558216020496,
+      "Shuffled 5-fold F1 (mean)": 0.25367032080638025
+    },
+    "Decision Tree": {
+      "Temporal CV F1 (mean)": 0.2106674504508325,
+      "Temporal CV F1 (sd)": 0.13430389787643066,
+      "Shuffled 5-fold F1 (mean)": 0.6320228955842072
+    },
+    "Random Forest": {
+      "Temporal CV F1 (mean)": 0.24959735976588943,
+      "Temporal CV F1 (sd)": 0.20995143468325356,
+      "Shuffled 5-fold F1 (mean)": 0.7543423611876551
+    }
+  }
+}
