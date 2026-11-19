@@ -2,50 +2,41 @@
 
 This is for my final 80% marks Artificial Intelligence and Machine Learning model.
 
-## Predicting Population Decline with Supervised Learning
+## Predicting Population Growth and Decline with Regression
 
 CMP6202 Artificial Intelligence and Machine Learning Project (2026–27) · Student ID 23187763
 
-This project predicts whether a country's population is **shrinking** (annual growth rate < 0) in a given year from its demographic profile. It compares **Logistic Regression**, a **Decision Tree** and a **Random Forest**, using a **train/test split by year** (1955–2003 train, 2004–2023 test) to prevent temporal leakage.
+This project predicts a **number**: a country's **population growth rate** in a given year (**% per year**) from its demographic profile. A negative prediction means the population is expected to **shrink**. It follows the module's "A to Z" workflow (Weeks 3, 5 and 8): problem → load → clean → features → split → baseline → cross-validation → tuning (, ) → final test once → explain.
 
-## Results (test set, 2004–2023)
+The data is split **by year** (learn from 1955–2003, test on 2004–2023) and cross-validated on blocks of years, because a random split would put neighbouring years of the same country in both sets (data leakage).
 
-| Model | Precision | Recall | F1 | ROC-AUC |
-|---|---|---|---|---|
-| Logistic Regression | 0.453 | 0.910 | 0.605 | 0.907 |
-| Decision Tree | 0.505 | 0.576 | 0.538 | 0.879 |
-| **Random Forest** | **0.681** | **0.670** | **0.676** | **0.932** |
+## Results on the test years (2004–2023)
+
+Errors are in **percentage points of growth** (0.5 = half a percentage point off). Lower MAE/RMSE and higher R² are better.
+
+| Model | MAE | RMSE | R² |
+|---|---|---|---|
+| Baseline (mean) | 1.309 | 1.755 | -0.166 |
+| Linear Regression | 0.524 | 1.055 | 0.579 |
+| Decision Tree (tuned) | 0.605 | 1.237 | 0.421 |
+| Random Forest (tuned) | 0.493 | 1.079 | 0.559 |
+
+The tuned Random Forest has the lowest typical error; Linear Regression is close behind with the best RMSE and R² and is easier to explain.
 
 ## Repository contents
 
-```
-population_decline_model.ipynb   executed notebook (all outputs and charts)
-population_decline_model.py      the same pipeline as a plain script
-data/WPP2024_Demographic_Indicators_Medium.csv.gz   raw dataset (UN WPP 2024)
-data/population_decline_model_data.csv   the 13,869 cleaned rows used for modelling (with Train/Test split column)
-figures/                         charts used in the report
-results.json                     all metrics written by the notebook
-requirements.txt
-```
+
 
 ## How to run
 
-```bash
-git clone https://github.com/Shadow-Lord123/AI-Population-Model.git
-cd AI-Population-Model
-pip install -r requirements.txt
-jupyter notebook population_decline_model.ipynb    # or: python population_decline_model.py
-```
+Requirement already satisfied: pandas>=2.0 in /usr/local/lib/python3.13/site-packages (from -r requirements.txt (line 1)) (3.0.5)
+Requirement already satisfied: numpy>=1.24 in /usr/local/lib/python3.13/site-packages (from -r requirements.txt (line 2)) (2.5.3)
+Requirement already satisfied: scikit-learn>=1.4 in /usr/local/lib/python3.13/site-packages (from -r requirements.txt (line 3)) (1.9.1)
+Requirement already satisfied: matplotlib>=3.7 in /usr/local/lib/python3.13/site-packages (from -r requirements.txt (line 4)) (3.11.2)
+Requirement already satisfied: seaborn>=0.13 in /usr/local/lib/python3.13/site-packages (from -r requirements.txt (line 5)) (0.13.2)
 
-Run from the repository root so the relative `data/` and `figures/` paths resolve. A full run takes about 2 minutes on a laptop. Results are reproducible (`random_state=42`).
-
-## Method in brief
-
-1. Keep Country/Area rows only, estimates only (1950–2023), and drop micro-states with a peak population below 100,000 → 201 countries.
-2. Target: `Declining = PopGrowthRate < 0`. Remove every column that arithmetically reconstructs growth (population totals, births, deaths, crude rates, natural change, same-year migration).
-3. Engineered features using past data only: `CNMR_prev5`, `TFR_change5`, `MedianAge_change5`, `LEx_gap`.
-4. Expanding-window cross-validation on whole years; grid search scored on F1; class weighting for imbalance.
+Run from the repository root so  resolves. **In Google Colab**, upload the  folder to your Drive and change  to that folder (as in the labs). A full run takes about 10 minutes on a 2-core machine, mostly the hyperparameter searches. Results are reproducible ().
 
 ## Data source and licence
 
-United Nations, Department of Economic and Social Affairs, Population Division (2024). *World Population Prospects 2024*, Online Edition. https://population.un.org/wpp/ — licensed under **CC BY 3.0 IGO** (http://creativecommons.org/licenses/by/3.0/igo/).
+United Nations, Department of Economic and Social Affairs, Population Division (2024). *World Population Prospects 2024*, Online Edition. https://population.un.org/wpp/ (accessed 13 November 2026). Licensed under **CC BY 3.0 IGO** (http://creativecommons.org/licenses/by/3.0/igo/), which permits academic use with attribution.
